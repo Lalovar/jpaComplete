@@ -15,7 +15,7 @@ public class DaoProduct {
             entityManager.getTransaction().begin();
              
             Product product = new Product();
-            product.setName("perro");
+            product.setName("holaPrueba");
             product.setPrice(12);
              
             entityManager.persist(product);
