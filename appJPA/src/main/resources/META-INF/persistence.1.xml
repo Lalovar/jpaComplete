@@ -9,12 +9,10 @@
    <persistence-unit name="PersisTuto" transaction-type="RESOURCE_LOCAL">
       <provider>org.hibernate.ejb.HibernatePersistence</provider>
       <class>model.Product</class>
-      <class>model.Sale</class>
-      <class>model.Taco</class>
       <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tuto" />
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3271769" />
+            <property name="javax.persistence.jdbc.user" value="sql3271769" />
+            <property name="javax.persistence.jdbc.password" value="m1pubC1YkA" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />

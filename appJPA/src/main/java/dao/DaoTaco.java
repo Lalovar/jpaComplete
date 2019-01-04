@@ -2,9 +2,9 @@ package dao;
  
 import javax.persistence.*;
 import java.util.*;
-import model.Product;
+import model.Taco;
 
-public class DaoProduct {
+public class DaoTaco {
     
     private EntityManagerFactory factory;
     private EntityManager em;
@@ -19,11 +19,11 @@ public class DaoProduct {
         factory.close();
     }
  
-    public void insert(Product product) {
+    public void insert(Taco taco) {
         try{
             openConn();
             em.getTransaction().begin();
-            em.persist(product);
+            em.persist(taco);
             em.getTransaction().commit();
             closeConn();
             System.out.println("SUCCESS INSERTION");
@@ -32,14 +32,14 @@ public class DaoProduct {
         }
     }
     
-    public Collection<Product> findAll(){
+    public Collection<Taco> findAll(){
          Query query = null;
-         Collection<Product> list = null;
+         Collection<Taco> list = null;
          try{
             openConn();
             em.getTransaction().begin();
-            query = em.createQuery("SELECT e FROM Product e");
-            list = (Collection<Product>) query.getResultList(); 
+            query = em.createQuery("SELECT e FROM Taco e");
+            list = (Collection<Taco>) query.getResultList(); 
             em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
@@ -48,25 +48,25 @@ public class DaoProduct {
         return list;
     }
     
-    public Product findById(int id){
-         Product  product = null;
+    public Taco findById(int id){
+         Taco  taco = null;
          try{
             openConn();
             em.getTransaction().begin();
-            product = em.find(Product.class, id);
+            taco = em.find(Taco.class, id);
             em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
             System.out.println("ERROR in findById" + e);
         }
-        return product;
+        return taco;
     }
     
-    public void update(Product product){
+    public void update(Taco taco){
         try{
             openConn();
             em.getTransaction().begin();
-            em.merge(product);
+            em.merge(taco);
             em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
@@ -78,7 +78,7 @@ public class DaoProduct {
         try{
             openConn();
             em.getTransaction().begin();
-            em.remove(em.find(Product.class, id));
+            em.remove(em.find(Taco.class, id));
             em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
