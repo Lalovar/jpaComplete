@@ -14,7 +14,7 @@
             <property name="javax.persistence.jdbc.user" value="sql3271769" />
             <property name="javax.persistence.jdbc.password" value="m1pubC1YkA" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.show_sql" value="false" /> 
             <property name="hibernate.format_sql" value="true" />
         </properties>
     </persistence-unit>

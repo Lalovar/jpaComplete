@@ -2,13 +2,13 @@ package dao;
  
 import javax.persistence.*;
 import java.util.*;
-import model.Sale;
+import model.Orden;
 
-public class DaoSale {
+public class DaoOrden {
     
     private EntityManagerFactory factory;
     private EntityManager em;
-
+    
     private void openConn(){
          factory = Persistence.createEntityManagerFactory("PersisTuto");
          em = factory.createEntityManager();
@@ -19,11 +19,11 @@ public class DaoSale {
         factory.close();
     }
  
-    public void insert(Sale sale) {
+    public void insert(Orden orden) {
         try{
             openConn();
             em.getTransaction().begin();
-            em.persist(sale);
+            em.persist(orden);
             em.getTransaction().commit();
             closeConn();
             System.out.println("SUCCESS INSERTION");
@@ -32,14 +32,15 @@ public class DaoSale {
         }
     }
     
-    public Collection<Sale> findAll(){
+    public Collection<Orden> findAll(){
          Query query = null;
-         Collection<Sale> list = null;
+         Collection<Orden> list = null;
          try{
             openConn();
             em.getTransaction().begin();
-            query = em.createQuery("SELECT e FROM Sale e");
-            list = (Collection<Sale>) query.getResultList(); 
+            query = em.createQuery("SELECT e FROM Orden e");
+            list = (Collection<Orden>) query.getResultList(); 
+            em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
             System.out.println("ERROR in findAll" + e);
@@ -47,25 +48,25 @@ public class DaoSale {
         return list;
     }
     
-    public Sale findById(int id){
-         Sale  sale = null;
+    public Orden findById(int id){
+         Orden  orden = null;
          try{
             openConn();
-            
             em.getTransaction().begin();
-            sale = em.find(Sale.class, id);
+            orden = em.find(Orden.class, id);
+            em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
-            System.out.println("ERROR in findAll" + e);
+            System.out.println("ERROR in findById Order: " + e);
         }
-        return sale;
+        return orden;
     }
     
-    public void update(Sale sale){
+    public void update(Orden orden){
         try{
             openConn();
             em.getTransaction().begin();
-            em.merge(sale);
+            em.merge(orden);
             em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
@@ -73,17 +74,16 @@ public class DaoSale {
         }
     }
     
-    public void removeById(int id){
+     public void removeById(int id){
         try{
             openConn();
             em.getTransaction().begin();
-            em.remove(em.find(Sale.class, id));
+            em.remove(em.find(Orden.class, id));
             em.getTransaction().commit();
             closeConn();
          }catch(Exception e){
             System.out.println("ERROR in remove" + e);
         }
     }
-    
     
 }

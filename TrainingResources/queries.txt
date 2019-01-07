@@ -8,37 +8,6 @@ CREATE DATABASE tuto;
 USE tuto;
 
 4. Create tables
-CREATE TABLE product (
-    idProduct INT AUTO_INCREMENT,
-    name VARCHAR(20),
-    price FLOAT,
-    PRIMARY KEY (idProduct));
-    
-CREATE TABLE sale ( 
-    idSale INT AUTO_INCREMENT,
-    quantity INT,
-    product INT,
-    PRIMARY KEY (idsale),
-    FOREIGN KEY (product) REFERENCES product(idProduct) ON DELETE CASCADE );
-
-
-5.- Insert Data
-INSERT INTO product VALUES (    '',  "Smart Tv",         48);
-INSERT INTO product VALUES (    '',  "Xbox One S",       6500);
-INSERT INTO product VALUES (    '',  "Motorola g6 plus", 5000);
-INSERT INTO product VALUES (    '',  "Smart Watch",      3000);
-INSERT INTO product VALUES (    '',  "Laptop Alienware", 38000);
-
-INSERT INTO sale VALUES (    '',     05,     1   );
-INSERT INTO sale VALUES (    '',     22,     3   );
-INSERT INTO sale VALUES (    '',     11,     4   );
-INSERT INTO sale VALUES (    '',     03,     2   );
-INSERT INTO sale VALUES (    '',     01,     3   );
-INSERT INTO sale VALUES (    '',     10,     1   );
-INSERT INTO sale VALUES (    '',     11,     5   );
-
-
-
 
 CREATE TABLE producto (
     idProducto INT AUTO_INCREMENT,
@@ -47,3 +16,22 @@ CREATE TABLE producto (
     descripcion VARCHAR(100),
     PRIMARY KEY (idProducto) );
     
+    
+CREATE TABLE orden ( 
+    idOrden INT AUTO_INCREMENT,
+    estatus char,
+    total float,
+    numeroMesa int,
+    fechaPedido date,
+    fechaEntrega date,
+    PRIMARY KEY (idOrden) );
+    
+CREATE TABLE detalle ( 
+    idDetalle INT AUTO_INCREMENT,
+    idOrden INT,
+    idProduct INT,
+    cantidad INT,
+    subtotal float,
+    PRIMARY KEY (idDetalle),
+    FOREIGN KEY (idOrden) REFERENCES orden(idOrden) ON DELETE CASCADE,
+    FOREIGN KEY (idProduct) REFERENCES producto(idProducto) ON DELETE CASCADE);

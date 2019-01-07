@@ -20,6 +20,10 @@ public class Taco implements Serializable {
     @Column(name = "descripcion")
     private String desc;
     
+    public Taco(){
+		
+	}
+    
     public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
     }
