@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import model.*;
-
+ 
 @Entity
 @Table(name = "detalle")
 public class Detalle implements Serializable {
@@ -11,35 +11,33 @@ public class Detalle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private     Integer     idDetalle;
-	@OneToMany
-    private     Orden       idOrden;
     @OneToMany
     private     Taco        idProduct;
-    private     Integer     cantidad;
+    @OneToMany
+    private     Orden       idOrden;
+    private     int         cantidad;
     private     float       subtotal;
 
-    public Detalle()
-    {
-    	
-    }
-    
-    public Detalle(Orden idOrden, Taco idProduct,Integer cantidad,float subtotal)
-	{
-		super();
-		this.idOrden = idOrden;
-		this.idProduct = idProduct;
-		this.cantidad =cantidad;
-		this.subtotal=subtotal;
-	}	
-	
-	public Orden getIdOrden() {
-		return idOrden;
+	public Detalle(){
+		
 	}
 
-	public void setIdOrden(Orden idOrden) {
+    public Detalle(Taco idProduct, Orden idOrden, int cantidad, float subtotal) {
+		super();
+		this.idProduct = idProduct;
 		this.idOrden = idOrden;
+		this.cantidad = cantidad;
+		this.subtotal = subtotal;
 	}
-	
+
+	public Integer getIdDetalle() {
+		return idDetalle;
+	}
+
+	public void setIdDetalle(Integer idDetalle) {
+		this.idDetalle = idDetalle;
+	}
+
 	public Taco getIdProduct() {
 		return idProduct;
 	}
@@ -47,15 +45,23 @@ public class Detalle implements Serializable {
 	public void setIdProduct(Taco idProduct) {
 		this.idProduct = idProduct;
 	}
-	
-	public Integer getCantidad() {
+
+	public Orden getIdOrden() {
+		return idOrden;
+	}
+
+	public void setIdOrden(Orden idOrden) {
+		this.idOrden = idOrden;
+	}
+
+	public int getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(Integer cantidad) {
+	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
 	public float getSubtotal() {
 		return subtotal;
 	}
@@ -63,4 +69,6 @@ public class Detalle implements Serializable {
 	public void setSubtotal(float subtotal) {
 		this.subtotal = subtotal;
 	}
+    
+	
 }
